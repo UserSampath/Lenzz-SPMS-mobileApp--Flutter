@@ -5,27 +5,20 @@ import 'login_page.dart';
 import 'package:http/http.dart' as http;
 import 'package:flutter_dotenv/flutter_dotenv.dart';
 
-
 class MyJobs extends StatefulWidget {
   const MyJobs({super.key});
-
   @override
   State<MyJobs> createState() => _MyJobsState();
 }
-
 class _MyJobsState extends State<MyJobs> {
-
   List<dynamic> _items = [];
   List<Map<String, dynamic>> _tasks = [];
-
   @override
   void initState() {
     super.initState();
     getProjects(context);
     getTasks(context);
   }
-
-
   Future<String> getTokenFromSharedPreferences() async {
     final prefs = await SharedPreferences.getInstance();
     final token = prefs.getString('token') ?? '';

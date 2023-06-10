@@ -92,17 +92,6 @@ class _ForgotPasswordState extends State<ForgotPassword> {
                 ),
                 const SizedBox(height: 20),
                 InkWell(
-                  // onTap: () {
-                  //   if (_formfield.currentState!.validate()) {
-                  //     print("success");
-                  //     print(emailController.text);
-
-                  //     emailController.clear();
-                  //     Navigator.of(context).push(MaterialPageRoute(
-                  //         builder: (context) => const VerifyOTP()));
-                  //   }
-                  // }
-                  // ,
                   onTap: () async {
                     if (_formfield.currentState!.validate()) {
                       print(emailController.text);
