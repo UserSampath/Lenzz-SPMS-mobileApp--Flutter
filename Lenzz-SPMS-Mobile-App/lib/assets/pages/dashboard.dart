@@ -27,7 +27,7 @@ class _DashboardState extends State<Dashboard> {
     String a = await getTokenFromSharedPreferences();
     print('Text was clicked ${a}');
     final response = await http.get(
-      Uri.parse('http://192.168.1.9:4000/api/user/getUsers'),
+      Uri.parse('http://192.168.8.194:4000/api/user/getUsers'),
       headers: {'Authorization': 'Bearer ${a}'},
     );
     final responseData = jsonDecode(response.body);

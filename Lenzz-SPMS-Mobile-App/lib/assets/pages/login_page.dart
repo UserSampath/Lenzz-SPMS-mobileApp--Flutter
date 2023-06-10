@@ -4,8 +4,9 @@ import 'package:test_app/assets/pages/forgot_password.dart';
 import 'package:http/http.dart' as http;
 import 'dart:convert';
 import 'package:shared_preferences/shared_preferences.dart';
-
+import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'chooseProject.dart';
+
 
 class Login extends StatefulWidget {
   const Login({super.key});
@@ -144,7 +145,7 @@ class _LoginState extends State<Login> {
                       });
                       // Make POST request
                       final response = await http.post(
-                        Uri.parse('http://192.168.8.102:4000/api/user/login'),
+                        Uri.parse('${dotenv.env['IP_ADDRESS']}/api/user/login'),
                         body: {
                           'email': emailController.text,
                           'password': passwordController.text,
@@ -202,10 +203,10 @@ class _LoginState extends State<Login> {
                     ),
                     child: Center(
                       child: loading
-                          ? CircularProgressIndicator(
+                          ? const CircularProgressIndicator(
                               color: Colors.white,
                             )
-                          : Text(
+                          : const Text(
                               "Log In",
                               style: TextStyle(
                                   color: Colors.white,

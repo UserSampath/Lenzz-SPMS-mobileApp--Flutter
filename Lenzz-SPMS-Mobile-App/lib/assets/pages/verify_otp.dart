@@ -1,5 +1,5 @@
 import 'dart:convert';
-
+import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:flutter/material.dart';
 import 'package:test_app/assets/pages/login_page.dart';
 import 'package:test_app/assets/pages/new_password.dart';
@@ -103,7 +103,7 @@ class _VerifyOTPState extends State<VerifyOTP> {
                       });
                       final response = await http.post(
                         Uri.parse(
-                            'http://192.168.8.102:4000/api/user/checkOTP'),
+                            '${dotenv.env['IP_ADDRESS']}/api/user/checkOTP'),
                         body: {
                           'email': widget.email,
                           'otp': OTPController.text,

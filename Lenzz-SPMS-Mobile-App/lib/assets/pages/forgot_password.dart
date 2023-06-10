@@ -3,6 +3,8 @@ import 'package:test_app/assets/pages/login_page.dart';
 import 'package:test_app/assets/pages/verify_otp.dart';
 import 'package:http/http.dart' as http;
 import 'dart:convert';
+import 'package:flutter_dotenv/flutter_dotenv.dart';
+
 
 class ForgotPassword extends StatefulWidget {
   const ForgotPassword({super.key});
@@ -111,7 +113,7 @@ class _ForgotPasswordState extends State<ForgotPassword> {
                       // Make POST request
                       final response = await http.post(
                         Uri.parse(
-                            'http://192.168.8.102:4000/api/user/generateOTP'),
+                            '${dotenv.env['IP_ADDRESS']}/api/user/generateOTP'),
                         body: {
                           'email': emailController.text,
                         },

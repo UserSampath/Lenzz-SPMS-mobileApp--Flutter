@@ -31,6 +31,7 @@ class _ListItemState extends State<ListItem> {
     return token;
   }
 
+  //A list of projects needs to be retrieved from a backend API
   void getProjects(BuildContext context) async {
     String a = await getTokenFromSharedPreferences();
     print('Text was clicked ${a}');
@@ -45,7 +46,10 @@ class _ListItemState extends State<ListItem> {
         _items = responseData.map((item) => item['projectname']).toList();
         print(_items);
       });
-    } else if (response.statusCode == 401) {
+    }else if(response.statusCode==400){
+      print('Bad');
+    }
+    else if (response.statusCode == 401) {
       print('Request is not authorized');
       Navigator.of(context)
           .push(MaterialPageRoute(builder: (context) => const Login()));
@@ -121,20 +125,12 @@ class _ListItemState extends State<ListItem> {
                           ),
                           leading: const CircleAvatar(
                             backgroundImage: NetworkImage(
-                                  'https://as2.ftcdn.net/v2/jpg/04/33/76/69/1000_F_433766963_8gZOOwnAHgrsSl1MMEi4t712X1ZD8d66.jpg'),
-                            ),
-                            subtitle: const Text(
-                              'Started July 12',
-                              textAlign: TextAlign.right,
-                              style: TextStyle(
-                                fontSize: 18.0,
-                                fontWeight: FontWeight.w900,
-                              ),
-                            ),
+                                'https://as2.ftcdn.net/v2/jpg/04/33/76/69/1000_F_433766963_8gZOOwnAHgrsSl1MMEi4t712X1ZD8d66.jpg'),
                           ),
-                        );
-                      },
-                    ),
+                        ),
+                      );
+                    },
+                  ),
                 ),
               ),
             ),
@@ -144,4 +140,3 @@ class _ListItemState extends State<ListItem> {
     );
   }
 }
-

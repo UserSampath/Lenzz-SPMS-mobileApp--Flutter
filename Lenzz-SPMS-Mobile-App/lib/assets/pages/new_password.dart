@@ -5,6 +5,8 @@ import 'package:shared_preferences/shared_preferences.dart';
 import 'package:test_app/assets/pages/dashboard.dart';
 import 'package:test_app/assets/pages/login_page.dart';
 import 'package:http/http.dart' as http;
+import 'package:flutter_dotenv/flutter_dotenv.dart';
+
 
 import 'chooseProject.dart';
 
@@ -143,7 +145,7 @@ class _NewPasswordState extends State<NewPassword> {
                       });
                       final response = await http.post(
                         Uri.parse(
-                            'http://192.168.8.102:4000/api/user/resetPassword'),
+                            '${dotenv.env['IP_ADDRESS']}/api/user/resetPassword'),
                         body: {
                           'email': widget.email,
                           'newPassword': confirmPasswordController.text
