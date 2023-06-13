@@ -6,7 +6,13 @@ import 'package:http/http.dart' as http;
 import 'package:flutter_dotenv/flutter_dotenv.dart';
 
 class MyJobs extends StatefulWidget {
-  const MyJobs({super.key});
+  // const MyJobs({super.key});
+  final String id;
+
+  MyJobs({Key? key, required this.id}) : super(key: key);
+
+  // const NewPassword({Key? key, required this.email}) : super(key: key);
+
   @override
   State<MyJobs> createState() => _MyJobsState();
 }
@@ -38,6 +44,9 @@ class _MyJobsState extends State<MyJobs> {
       setState(() {
         _items = responseData.map((item) => item['projectname']).toList();
         print(_items);
+
+        print("id 1111111111111111111${widget.id}");
+
       });
     }else if(response.statusCode==400){
       print('Bad');
@@ -60,7 +69,7 @@ class _MyJobsState extends State<MyJobs> {
     String token = await getTokenFromSharedPreferences();
     print('Text was clicked $token');
     Map<String, dynamic> requestBody = {
-      'id': '648077ce822996c09ca50e05',
+      'id': widget.id,
     };
 
     final response = await http.post(

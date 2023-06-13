@@ -16,8 +16,15 @@ class ListItem extends StatefulWidget {
   _ListItemState createState() => _ListItemState();
 }
 
+class MyObject {
+  final dynamic projectName;
+  final dynamic id;
+
+  MyObject(this.projectName, this.id);
+}
+
 class _ListItemState extends State<ListItem> {
-  List<dynamic> _items = [];
+  List<MyObject> _items = [];
 
   @override
   void initState() {
@@ -40,12 +47,23 @@ class _ListItemState extends State<ListItem> {
       headers: {'Authorization': 'Bearer ${a}'},
     );
     final responseData = jsonDecode(response.body);
-    print(response.statusCode);
+    print("project responce ${responseData}");
     if (response.statusCode == 200) {
+
       setState(() {
-        _items = responseData.map((item) => item['projectname']).toList();
-        print(_items);
+        _items = List<MyObject>.from(responseData.map((item) {
+          return MyObject(
+            item['projectname'],
+            item['_id'],
+          );
+        }));
       });
+      _items.forEach((MyObject item) {
+        print('Project Name: ${item.projectName}');
+        print('ID: ${item.id}');
+        print('---');
+      });
+      print("state ${_items.length}");
     }else if(response.statusCode==400){
       print('Bad');
     }
@@ -106,17 +124,18 @@ class _ListItemState extends State<ListItem> {
                         ),
                         child: ListTile(
                           onTap: () {
+                            print("contextqqqqqqqqq${_items}");
                             Navigator.pushReplacement(
                               context,
                               MaterialPageRoute(
-                                builder: (context) => const MyJobs(),
+                                builder: (context) => MyJobs(id: _items[index].id),
                               ),
                             );
                           },
                           title: Padding(
                             padding: const EdgeInsets.all(16.0),
                             child: Text(
-                              _items[index],
+                              _items[index].projectName,
                               style: const TextStyle(
                                 fontSize: 24.0,
                                 fontWeight: FontWeight.bold,
