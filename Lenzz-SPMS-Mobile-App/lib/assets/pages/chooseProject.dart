@@ -1,7 +1,7 @@
 import 'dart:convert';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'login_page.dart';
-import 'new.dart';
+import 'new_a.dart';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 
@@ -43,7 +43,7 @@ class _ListItemState extends State<ListItem> {
     String a = await getTokenFromSharedPreferences();
     print('Text was clicked ${a}');
     final response = await http.get(
-      Uri.parse('http://192.168.8.102:4000/api/project'),
+      Uri.parse('http://192.168.8.100:4000/api/project'),
       headers: {'Authorization': 'Bearer ${a}'},
     );
     final responseData = jsonDecode(response.body);

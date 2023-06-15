@@ -19,12 +19,22 @@ class MyJobs extends StatefulWidget {
 class _MyJobsState extends State<MyJobs> {
   List<dynamic> _items = [];
   List<Map<String, dynamic>> _tasks = [];
+  TabController? _tabController;
   @override
   void initState() {
     super.initState();
     getProjects(context);
     getTasks(context);
+
   }
+
+
+  @override
+  void dispose() {
+    _tabController!.dispose();
+    super.dispose();
+  }
+
   Future<String> getTokenFromSharedPreferences() async {
     final prefs = await SharedPreferences.getInstance();
     final token = prefs.getString('token') ?? '';
@@ -71,7 +81,6 @@ class _MyJobsState extends State<MyJobs> {
     Map<String, dynamic> requestBody = {
       'id': widget.id,
     };
-
     final response = await http.post(
       Uri.parse('${dotenv.env['IP_ADDRESS']}/progressStage/taskWithPS'),
       headers: {'Content-Type': 'application/json'},
@@ -113,8 +122,6 @@ class _MyJobsState extends State<MyJobs> {
     Tab(child: Text("Started")),
   ];
 
-
-
   List<Map<String, dynamic>> cardDataList = [
     {
       'title': 'Front End Design',
@@ -142,6 +149,8 @@ class _MyJobsState extends State<MyJobs> {
     },
 
   ];
+
+
 
   @override
   Widget build(BuildContext context) {
