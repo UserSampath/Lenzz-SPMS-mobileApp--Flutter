@@ -340,13 +340,15 @@ class _MyJobsState extends State<MyJobs> with
             )
         ),
 
-        body:  TabBarView(
+        body: TabBarView(
           controller: _tabController,
           children: List.generate(
             tasksWhithPs.length,
                 (index) => ListView.builder(
-                  itemCount: tasksWhithPs[index].cards.length,
-                  itemBuilder: (context, cardIndex) {
+              itemCount: tasksWhithPs[index].cards.length,
+              itemBuilder: (context, cardIndex) {
+                final cardTitle = tasksWhithPs[index].cards[cardIndex]['name'];
+
                 return GestureDetector(
                   onTap: () {
                     showDialog(
@@ -355,12 +357,12 @@ class _MyJobsState extends State<MyJobs> with
                         return AlertDialog(
                           shape: RoundedRectangleBorder(
                             side: BorderSide(
-                              color: Colors.black, //<-- SEE HERE
+                              color: Colors.black,
                             ),
                             borderRadius: BorderRadius.circular(20.0),
                           ),
                           backgroundColor: Colors.indigoAccent[100],
-                          title: Text("FONT END DESIGN"),
+                          title: Text("${tasksWhithPs[index].cards[cardIndex]['name']}"),
                           content: DefaultTextStyle(
                             style: TextStyle(fontWeight: FontWeight.bold),
                             child: SingleChildScrollView(
@@ -368,26 +370,22 @@ class _MyJobsState extends State<MyJobs> with
                                 children: [
                                   Row(
                                     children: [
-                                      Text("Flag:"),
-                                      Icon(
-                                        Icons.circle,
-                                        color: Colors.green,
-                                      ),
+                                      Text("Flag: ${tasksWhithPs[index].cards[cardIndex]['flag']}"),
                                     ],
                                   ),
                                   SizedBox(height: 8.0),
-                                  Text("Linked Task:"),
+                                  Text("Linked Task: ${tasksWhithPs[index].cards[cardIndex]['link']}"),
                                   SizedBox(height: 8.0),
-                                  Text("Assign To:"),
+                                  Text("Assign To: ${tasksWhithPs[index].cards[cardIndex]['assign']}"),
                                   SizedBox(height: 8.0),
-                                  Text("Report To:"),
+                                  Text("Report To: ${tasksWhithPs[index].cards[cardIndex]['reporter']}"),
                                   SizedBox(height: 8.0),
-                                  Text("Start Date: "),
+                                  Text("Start Date: ${tasksWhithPs[index].cards[cardIndex]['startDate']} "),
                                   SizedBox(height: 8.0),
-                                  Text("End Date: "),
+                                  Text("End Date: ${tasksWhithPs[index].cards[cardIndex]['endDate']} "),
                                   SizedBox(height: 8.0),
                                   Text(
-                                    "Description: Inside the app bar create 5 tab bar elements using React JS framework.",
+                                    "Description: ${tasksWhithPs[index].cards[cardIndex]['description']}",
                                   ),
                                 ],
                               ),
@@ -411,25 +409,24 @@ class _MyJobsState extends State<MyJobs> with
                   child: Card(
                     shape: RoundedRectangleBorder(
                       side: BorderSide(
-                        color: Colors.indigoAccent, //<-- SEE HERE
+                        color: Colors.indigoAccent,
                       ),
                       borderRadius: BorderRadius.circular(20.0),
                     ),
-                    elevation: 2, // Adjust the elevation as desired
+                    elevation: 2,
                     margin: EdgeInsets.symmetric(
                       horizontal: 16,
                       vertical: 8,
-                    ), // Adjust the margin as desired
+                    ),
                     child: ListTile(
-                      contentPadding:
-                      EdgeInsets.all(16), // Adjust the content padding as desired
+                      contentPadding: EdgeInsets.all(16),
                       leading: CircleAvatar(
                         backgroundImage: NetworkImage(
-                            "https://sampathnalaka.s3.eu-north-1.amazonaws.com/uploads/IMG_20210907_151753_997.jpg"
+                          "https://sampathnalaka.s3.eu-north-1.amazonaws.com/uploads/IMG_20210907_151753_997.jpg",
                         ),
                       ),
                       title: Text(
-                        taskTitles[cardIndex],
+                        cardTitle,
                         style: TextStyle(
                           fontWeight: FontWeight.bold,
                           fontSize: 20,
@@ -442,6 +439,7 @@ class _MyJobsState extends State<MyJobs> with
             ),
           ),
         ),
+
       ),
     );
   }
