@@ -51,33 +51,12 @@ class MyJobs extends StatefulWidget {
 class _MyJobsState extends State<MyJobs> with
     SingleTickerProviderStateMixin{
 
-  List<String> progressStages = [
-    "ToDo",
-    "In Progress",
-    "QA",
-    "Done",
-    "Started",
-  ];
-
-  List<String> taskTitles = [
-    "FRONTEND",
-    "BACKEND",
-    "Card 3",
-    "Card 4",
-    "Card 5",
-    "Card 6",
-    "Card 7",
-    "Card 8",
-    "Card 9",
-    "Card 10",
-  ];
-
   List<dynamic> _projects = [];
   List <MyObject> tasksWhithPs = [];
 
 
   TabController? _tabController;
-  List<Task> _tasks = []; // Add this line to define the _tasks list
+
 
   @override
   void initState() {
@@ -186,11 +165,8 @@ class _MyJobsState extends State<MyJobs> with
           }
         }
         setState(() {
-          _tasks = fetchedTasks;
-          taskTitles = fetchedTasks.map((task) => task.taskTitles).toList();
-          // tabs = progressStages.map((stage) => Tab(child: Text(stage))).toList();
           _tabController = TabController(
-            length: progressStages.length,
+            length: tasksWhithPs.length,
             vsync: this,
           );
         });
@@ -207,20 +183,7 @@ class _MyJobsState extends State<MyJobs> with
       print('Exception occurred: $e');
     }
   }
-
-
-  //task api
-
-
-  List<Tab> tabs=[
-    Tab(child: Text("ToDo")),
-    Tab(child: Text("In Progress")),
-    Tab(child: Text("QA")),
-    Tab(child: Text("Done")),
-    Tab(child: Text("Started")),
-  ];
-
-
+  List<Tab> tabs=[];
   Color _getColorFromHex(String hexColor) {
     hexColor = hexColor.replaceAll('#', '');
     if (hexColor.length == 6) {
@@ -228,8 +191,6 @@ class _MyJobsState extends State<MyJobs> with
     }
     return Color(int.parse(hexColor, radix: 16));
   }
-
-
 
   @override
   Widget build(BuildContext context) {
