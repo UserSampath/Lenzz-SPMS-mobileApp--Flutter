@@ -15,11 +15,6 @@ Future <void> main () async {
   );
 }
 
-// void main() => runApp(
-//   DevicePreview(
-//     builder: (context) => MyApp(), // Wrap your app
-//   ),
-// );
 
 class MyApp extends StatelessWidget {
   const MyApp({super.key});

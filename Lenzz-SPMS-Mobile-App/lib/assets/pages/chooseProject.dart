@@ -1,4 +1,5 @@
 import 'dart:convert';
+import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'login_page.dart';
 import 'new_a.dart';
@@ -43,7 +44,7 @@ class _ListItemState extends State<ListItem> {
     String a = await getTokenFromSharedPreferences();
     print('Text was clicked ${a}');
     final response = await http.get(
-      Uri.parse('http://192.168.8.100:4000/api/project'),
+      Uri.parse('${dotenv.env['IP_ADDRESS']}/api/project'),
       headers: {'Authorization': 'Bearer ${a}'},
     );
     final responseData = jsonDecode(response.body);
@@ -81,7 +82,7 @@ class _ListItemState extends State<ListItem> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.indigo[200],
+      backgroundColor: Color.fromARGB(255, 11, 149, 255),
       body: Column(
         children: [
           Row(
@@ -92,12 +93,17 @@ class _ListItemState extends State<ListItem> {
                   'Choose \n your project',
                   textAlign: TextAlign.left,
                   style: TextStyle(
-                    fontSize: 30.0,
+                    fontSize: 40.0,
                     fontWeight: FontWeight.bold,
                   ),
                 ),
               ),
             ],
+          ),
+          Image.asset(
+            'assets/hasthiya.png',
+            height: 300,
+            width: 300,
           ),
           Expanded(
             child: Center(
@@ -122,6 +128,7 @@ class _ListItemState extends State<ListItem> {
                           borderRadius: BorderRadius.circular(15),
                           side: const BorderSide(width: 2, color: Colors.black),
                         ),
+                        color: Colors.white,
                         child: ListTile(
                           onTap: () {
                             print("contextqqqqqqqqq${_items}");
@@ -141,10 +148,6 @@ class _ListItemState extends State<ListItem> {
                                 fontWeight: FontWeight.bold,
                               ),
                             ),
-                          ),
-                          leading: const CircleAvatar(
-                            backgroundImage: NetworkImage(
-                                'https://as2.ftcdn.net/v2/jpg/04/33/76/69/1000_F_433766963_8gZOOwnAHgrsSl1MMEi4t712X1ZD8d66.jpg'),
                           ),
                         ),
                       );

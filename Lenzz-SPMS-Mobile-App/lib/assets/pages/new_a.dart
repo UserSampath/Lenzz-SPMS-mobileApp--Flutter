@@ -1,6 +1,7 @@
 import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+import 'chooseProject.dart';
 import 'login_page.dart';
 import 'package:http/http.dart' as http;
 import 'package:flutter_dotenv/flutter_dotenv.dart';
@@ -192,6 +193,7 @@ class _MyJobsState extends State<MyJobs> with
     return Color(int.parse(hexColor, radix: 16));
   }
 
+
   @override
   Widget build(BuildContext context) {
     double width = MediaQuery.of(context).size.width;
@@ -203,57 +205,28 @@ class _MyJobsState extends State<MyJobs> with
         backgroundColor: const Color.fromARGB(255, 220, 237, 250),
         appBar: AppBar(
             automaticallyImplyLeading: false,
-            actions: [
-              const Padding(
-                padding: EdgeInsets.only(right: 2.0),
-                child: InkWell(
-                  child: CircleAvatar(
-                    backgroundImage: NetworkImage(
-                        'https://as2.ftcdn.net/v2/jpg/04/33/76/69/1000_F_433766963_8gZOOwnAHgrsSl1MMEi4t712X1ZD8d66.jpg'),
-                  ),
-                ),
-              ),
-              PopupMenuButton(
-                onSelected: (value) => _logout(context),
-                itemBuilder: (BuildContext bc) {
-                  return const [
-                    PopupMenuItem(
-                      value: '/logout',
-                      child: Text("Logout",
-                        style: TextStyle(fontSize: 14.0),),
-                    ),
-                  ];
-                },
-              ),
-            ],
-            backgroundColor: Colors.indigo,
-            shape: RoundedRectangleBorder(
-                borderRadius: BorderRadius.only(bottomRight: Radius.circular(30), bottomLeft: Radius.circular(30))
+            leading: Builder(
+              builder: (BuildContext context) {
+                return BackButton(
+                    onPressed: () {
+                      Navigator.of(context)
+                          .push(MaterialPageRoute(builder: (context) => const ListItem()));
+                    }
+                );
+              },
             ),
             title: Row(
               crossAxisAlignment: CrossAxisAlignment.center,
               children: [
-                const Text(
-                  "Hasthiya",
-                  style: TextStyle(color: Colors.black,
-                      fontWeight: FontWeight.bold,
-                      fontSize: 24),
-                ),
-                const Padding(
-                  padding: EdgeInsets.symmetric(horizontal: 2),
-                ),
                 Image.asset(
-                  'assets/social.png',
-                  height: 40,
-                  width: 40,
-                ),
-                const Padding(
-                  padding: EdgeInsets.symmetric(horizontal: 5),
+                  'assets/hasthiya.png',
+                  height: 70,
+                  width: 70,
                 ),
                 Column(
                   children: <Widget>[
                     DropdownButton<String>(
-                      dropdownColor: Colors.indigoAccent,
+                      dropdownColor: Color.fromARGB(255, 11, 149, 255),
                       style: const TextStyle(
                         fontSize: 15.0,
                         fontWeight: FontWeight.bold,
@@ -290,10 +263,40 @@ class _MyJobsState extends State<MyJobs> with
                 ),
               ],
             ),
+            actions: [
+              const Padding(
+                padding: EdgeInsets.only(right: 10.0),
+                child: InkWell(
+                  child: CircleAvatar(
+                    backgroundImage: NetworkImage(
+                        'https://as2.ftcdn.net/v2/jpg/04/33/76/69/1000_F_433766963_8gZOOwnAHgrsSl1MMEi4t712X1ZD8d66.jpg'),
+                  ),
+                ),
+              ),
+              Container(
+                color: Color.fromARGB(255, 11, 149, 255),
+                child: PopupMenuButton(
+                  onSelected: (value) => _logout(context),
+                  itemBuilder: (BuildContext bc) {
+                    return const [
+                      PopupMenuItem(
+                        value: '/logout',
+                        child: Text("Logout",
+                          style: TextStyle(fontSize: 14.0),),
+                      ),
+                    ];
+                  },
+                ),
+              ),
+            ],
+            backgroundColor: Color.fromARGB(255, 11, 149, 255),
+            shape: RoundedRectangleBorder(
+                borderRadius: BorderRadius.only(bottomRight: Radius.circular(30), bottomLeft: Radius.circular(30))
+            ),
+
             centerTitle: true,
             bottom: PreferredSize(
-              preferredSize: Size.fromHeight(60),
-
+              preferredSize: Size.fromHeight(80),
               child:TabBar(
                 isScrollable: true,
                 tabs: tabs,
@@ -322,7 +325,7 @@ class _MyJobsState extends State<MyJobs> with
                             ),
                             borderRadius: BorderRadius.circular(20.0),
                           ),
-                          backgroundColor: Colors.indigoAccent[100],
+                          backgroundColor: Colors.white,
                           title: Text("${tasksWhithPs[index].cards[cardIndex]['name']}"),
                           content: DefaultTextStyle(
                             style: TextStyle(fontWeight: FontWeight.bold),
@@ -370,7 +373,7 @@ class _MyJobsState extends State<MyJobs> with
                   child: Card(
                     shape: RoundedRectangleBorder(
                       side: BorderSide(
-                        color: Colors.indigoAccent,
+                        color: Colors.white,
                       ),
                       borderRadius: BorderRadius.circular(20.0),
                     ),
