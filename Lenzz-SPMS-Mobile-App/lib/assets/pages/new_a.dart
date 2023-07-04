@@ -1,11 +1,12 @@
 import 'dart:convert';
 import 'package:flutter/material.dart';
+import 'package:google_nav_bar/google_nav_bar.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+import '../navbar.dart';
 import 'chooseProject.dart';
 import 'login_page.dart';
 import 'package:http/http.dart' as http;
 import 'package:flutter_dotenv/flutter_dotenv.dart';
-
 
 class Task {
   String progressStage;
@@ -36,13 +37,11 @@ class MyObject {
   final dynamic title;
   final List<dynamic> cards;
 
-
   MyObject(this.id, this.title, this.cards);
 }
 
 class MyJobs extends StatefulWidget {
   final String id;
-
   MyJobs({Key? key, required this.id}) : super(key: key);
 
   @override
@@ -54,10 +53,7 @@ class _MyJobsState extends State<MyJobs> with
 
   List<dynamic> _projects = [];
   List <MyObject> tasksWhithPs = [];
-
-
   TabController? _tabController;
-
 
   @override
   void initState() {
@@ -137,7 +133,6 @@ class _MyJobsState extends State<MyJobs> with
           print('cards: ${item.cards}');
         });
 
-
         List<Task> fetchedTasks = [];
         for (var progressData in responseData['progressstage']) {
           for (var taskData in progressData) {
@@ -193,7 +188,6 @@ class _MyJobsState extends State<MyJobs> with
     return Color(int.parse(hexColor, radix: 16));
   }
 
-
   @override
   Widget build(BuildContext context) {
     double width = MediaQuery.of(context).size.width;
@@ -205,16 +199,16 @@ class _MyJobsState extends State<MyJobs> with
         backgroundColor: const Color.fromARGB(255, 220, 237, 250),
         appBar: AppBar(
             automaticallyImplyLeading: false,
-            leading: Builder(
-              builder: (BuildContext context) {
-                return BackButton(
-                    onPressed: () {
-                      Navigator.of(context)
-                          .push(MaterialPageRoute(builder: (context) => const ListItem()));
-                    }
-                );
-              },
-            ),
+            // leading: Builder(
+            //   builder: (BuildContext context) {
+            //     return BackButton(
+            //         onPressed: () {
+            //           Navigator.of(context)
+            //               .push(MaterialPageRoute(builder: (context) => const ListItem()));
+            //         }
+            //     );
+            //   },
+            // ),
             title: Row(
               crossAxisAlignment: CrossAxisAlignment.center,
               children: [
@@ -222,45 +216,8 @@ class _MyJobsState extends State<MyJobs> with
                   'assets/hasthiya.png',
                   height: 70,
                   width: 70,
-                ),
-                Column(
-                  children: <Widget>[
-                    DropdownButton<String>(
-                      dropdownColor: Color.fromARGB(255, 11, 149, 255),
-                      style: const TextStyle(
-                        fontSize: 15.0,
-                        fontWeight: FontWeight.bold,
-                        color: Colors.black,
-                      ),
-                      items: List.generate(
-                        _projects.length,
-                            (index) => DropdownMenuItem<String>(
-                          value: (index + 1).toString(),
-                          child: Center(child: Text(_projects[index])),
-                        ),
-                      ),
-                      onChanged: (value) => {
-                        print(value.toString()),
-                      },
-                      hint: const Padding(
-                        padding: EdgeInsets.all(16.0),
-                        child: Text(
-                          'Projects',
-                          textAlign: TextAlign.left,
-                          style: TextStyle(
-                            color: Colors.black,
-                            fontWeight: FontWeight.bold,
-                            fontSize: 17.0,
-                          ),
-                        ),
-                      ),
-                      icon: const Icon(
-                        Icons.arrow_drop_down_circle_outlined,
-                        color: Colors.black,
-                      ),
-                    )
-                  ],
-                ),
+                ), 
+                Text("Hasthiya IT", style: TextStyle(fontSize: 15),)
               ],
             ),
             actions: [
@@ -274,7 +231,6 @@ class _MyJobsState extends State<MyJobs> with
                 ),
               ),
               Container(
-                color: Color.fromARGB(255, 11, 149, 255),
                 child: PopupMenuButton(
                   onSelected: (value) => _logout(context),
                   itemBuilder: (BuildContext bc) {
@@ -289,18 +245,61 @@ class _MyJobsState extends State<MyJobs> with
                 ),
               ),
             ],
-            backgroundColor: Color.fromARGB(255, 11, 149, 255),
+            backgroundColor: Colors.indigo,
             shape: RoundedRectangleBorder(
                 borderRadius: BorderRadius.only(bottomRight: Radius.circular(30), bottomLeft: Radius.circular(30))
             ),
 
             centerTitle: true,
             bottom: PreferredSize(
-              preferredSize: Size.fromHeight(80),
-              child:TabBar(
-                isScrollable: true,
-                tabs: tabs,
+              preferredSize: Size.fromHeight(100),
+              child: Column(
+                children: [
+                  Column(
+                    children: <Widget>[
+                      DropdownButton<String>(
+                        dropdownColor: Colors.indigo,
+                        style: const TextStyle(
+                          fontSize: 15.0,
+                          fontWeight: FontWeight.bold,
+                          color: Colors.black,
+                        ),
+                        items: List.generate(
+                          _projects.length,
+                              (index) => DropdownMenuItem<String>(
+                            value: (index + 1).toString(),
+                            child: Center(child: Text(_projects[index])),
+                          ),
+                        ),
+                        onChanged: (value) => {
+                          print(value.toString()),
+                        },
+                        hint: const Padding(
+                          padding: EdgeInsets.all(16.0),
+                          child: Text(
+                            'Projects',
+                            textAlign: TextAlign.left,
+                            style: TextStyle(
+                              color: Colors.black,
+                              fontWeight: FontWeight.bold,
+                              fontSize: 17.0,
+                            ),
+                          ),
+                        ),
+                        icon: const Icon(
+                          Icons.arrow_drop_down_circle_outlined,
+                          color: Colors.black,
+                        ),
+                      )
+                    ],
+                  ),
+                  TabBar(
+                    isScrollable: true,
+                    tabs: tabs,
+                  )
+                ],
               ),
+
             )
         ),
 
@@ -404,10 +403,28 @@ class _MyJobsState extends State<MyJobs> with
           ),
         ),
 
+        bottomNavigationBar: GNav(
+          gap: 8,
+          backgroundColor: Colors.black,
+          color: Colors.white,
+          tabBackgroundColor: Colors.indigo,
+          padding: EdgeInsets.all(16),
+          tabs: [
+            GButton(icon: Icons.arrow_back_rounded, text: 'Projects',
+              onPressed: (){
+                Navigator.of(context)
+                  .push(MaterialPageRoute(builder: (context) => const ListItem()));
+              },
+            ),
+            GButton(icon: Icons.home, text: 'Home',),
+            GButton(icon: Icons.person, text: 'Profile',
+            ),
+          ],
+
+        ),
       ),
     );
   }
-
 
   void _logout(BuildContext context) async {
     SharedPreferences prefs = await SharedPreferences.getInstance();

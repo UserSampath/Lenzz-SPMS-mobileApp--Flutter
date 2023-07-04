@@ -1,10 +1,10 @@
 import 'dart:convert';
-import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'login_page.dart';
 import 'new_a.dart';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
+import 'package:flutter_dotenv/flutter_dotenv.dart';
 
 void main() {
   runApp(const ListItem());
@@ -82,7 +82,7 @@ class _ListItemState extends State<ListItem> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Color.fromARGB(255, 11, 149, 255),
+      backgroundColor:Colors.indigo,
       body: Column(
         children: [
           Row(
@@ -93,17 +93,12 @@ class _ListItemState extends State<ListItem> {
                   'Choose \n your project',
                   textAlign: TextAlign.left,
                   style: TextStyle(
-                    fontSize: 40.0,
+                    fontSize: 30.0,
                     fontWeight: FontWeight.bold,
                   ),
                 ),
               ),
             ],
-          ),
-          Image.asset(
-            'assets/hasthiya.png',
-            height: 300,
-            width: 300,
           ),
           Expanded(
             child: Center(
@@ -113,7 +108,7 @@ class _ListItemState extends State<ListItem> {
                   decoration: const BoxDecoration(
                     boxShadow: [
                       BoxShadow(
-                        color: Colors.grey,
+                        color: Colors.blue,
                         blurRadius: 10.0,
                       ),
                     ],
@@ -128,7 +123,6 @@ class _ListItemState extends State<ListItem> {
                           borderRadius: BorderRadius.circular(15),
                           side: const BorderSide(width: 2, color: Colors.black),
                         ),
-                        color: Colors.white,
                         child: ListTile(
                           onTap: () {
                             print("contextqqqqqqqqq${_items}");
@@ -148,6 +142,10 @@ class _ListItemState extends State<ListItem> {
                                 fontWeight: FontWeight.bold,
                               ),
                             ),
+                          ),
+                          leading: const CircleAvatar(
+                            backgroundImage: NetworkImage(
+                                'https://as2.ftcdn.net/v2/jpg/04/33/76/69/1000_F_433766963_8gZOOwnAHgrsSl1MMEi4t712X1ZD8d66.jpg'),
                           ),
                         ),
                       );

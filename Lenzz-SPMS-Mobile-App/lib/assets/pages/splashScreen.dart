@@ -1,8 +1,7 @@
 import 'dart:async';
 import 'package:flutter/material.dart';
-import 'package:test_app/assets/pages/login_page.dart';
-import 'package:test_app/assets/pages/dashboard.dart';
 import 'chooseProject.dart';
+import 'login_page.dart';
 
 class SplashScreen extends StatefulWidget {
   const SplashScreen({super.key});
@@ -15,10 +14,10 @@ class _SplashScreenState extends State<SplashScreen> {
   @override
   void initState() {
     super.initState();
-    // Timer(Duration(seconds: 3),()=>Navigator.push(context, MaterialPageRoute(builder: (context)=>Login())))
+    Timer(Duration(seconds: 3),()=>Navigator.push(context, MaterialPageRoute(builder: (context)=>Login())));
     Timer(
       Duration(seconds: 3),
-      () => Navigator.push(
+          () => Navigator.push(
         context,
         MaterialPageRoute(builder: (context) => ListItem()),
       ),
