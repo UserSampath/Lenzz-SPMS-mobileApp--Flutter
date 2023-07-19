@@ -5,7 +5,7 @@ class IntroPage1 extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      color: Colors.indigo,
+      color: Colors.blue[400],
       child: Center(
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.center,

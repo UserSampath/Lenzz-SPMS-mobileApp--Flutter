@@ -1,11 +1,13 @@
 import 'package:flutter/material.dart';
 
+import '../login_page.dart';
+
 class IntroPage3 extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
     return Container(
-      color: Colors.indigo[400],
+      color: Colors.blue[400],
       child: Center(
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.center,
@@ -13,10 +15,13 @@ class IntroPage3 extends StatelessWidget {
           children: [
             Column(
               children: [
-                Image.asset(
-                  "assets/mag.png",
-                  width: 300.0,
-                  height: 300.0,
+                Padding(
+                  padding: const EdgeInsets.all(20.0),
+                  child: Image.asset(
+                    "assets/wed.gif",
+                    width: 300.0,
+                    height: 300.0,
+                  ),
                 ),
                 Text(
                   "Best Quality Software Products ",
@@ -33,6 +38,21 @@ class IntroPage3 extends StatelessWidget {
                       style: TextStyle(
                           color: Colors.white, fontWeight: FontWeight.normal, fontSize: 16),
                     ),
+                  ),
+                ),
+                Padding(
+                  padding: const EdgeInsets.all(40.0),
+                  child: FloatingActionButton.extended(
+                    label: Text('Get Starter'), // <-- Text
+                    backgroundColor: Colors.indigo,
+                    onPressed: () {
+                      Navigator.push(context,
+                        MaterialPageRoute(builder: (context){
+                          return Login();
+                        },
+                        ),
+                      );
+                    },
                   ),
                 ),
               ],

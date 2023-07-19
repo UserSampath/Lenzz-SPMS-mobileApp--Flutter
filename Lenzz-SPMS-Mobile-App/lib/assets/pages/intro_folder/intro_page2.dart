@@ -5,7 +5,7 @@ class IntroPage2 extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      color: Colors.indigoAccent,
+      color: Colors.blue[400],
       child: Center(
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.center,
@@ -13,13 +13,16 @@ class IntroPage2 extends StatelessWidget {
           children: [
             Column(
               children: [
-                Image.asset(
-                  "assets/gra.gif",
-                  width: 300.0,
-                  height: 300.0,
+                Padding(
+                  padding: const EdgeInsets.all(20.0),
+                  child: Image.asset(
+                    "assets/sed.gif",
+                    width: 300.0,
+                    height: 300.0,
+                  ),
                 ),
                 Text(
-                  "Software Developmenet Life Cycle ",
+                  "Team Sprit",
                   textAlign: TextAlign.center,
                   style: TextStyle(
                       color: Colors.white, fontWeight: FontWeight.bold, fontSize: 20),
@@ -27,9 +30,8 @@ class IntroPage2 extends StatelessWidget {
                 SizedBox(
                   child: Padding(
                     padding: const EdgeInsets.all(12.0),
-                    child: Text(
-                      "The software development life cycle, proper documentation, version control, and collaboration among team members are crucial for smooth progress and successful completion of the project.",
-                      textAlign: TextAlign.justify,
+                    child: Text("Collaborative Work \n Time Mangement \n Daily stand-ups",
+                      textAlign: TextAlign.left,
                       style: TextStyle(
                           color: Colors.white, fontWeight: FontWeight.normal, fontSize: 16),
                     ),

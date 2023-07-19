@@ -3,7 +3,6 @@ import 'package:smooth_page_indicator/smooth_page_indicator.dart';
 import 'package:test_app/assets/pages/intro_folder/intro_page1.dart';
 import 'package:test_app/assets/pages/intro_folder/intro_page2.dart';
 import 'package:test_app/assets/pages/intro_folder/intro_page3.dart';
-
 import 'login_page.dart';
 
 class onBoardingScreen extends StatefulWidget {
@@ -51,7 +50,7 @@ class _onBoardingScreenState extends State<onBoardingScreen> {
                             ),
                           );
                         },
-                        child: Text("Skip")),
+                        child: Text("Skip", style: TextStyle(color: Colors.white),)),
                     //dot indicator
                     SmoothPageIndicator(controller: _controller, count: 3),
                     //next
@@ -65,14 +64,13 @@ class _onBoardingScreenState extends State<onBoardingScreen> {
                             ),
                           );
                         },
-                        child: Text("Done"))
+                        child: Text("Done", style: TextStyle(color: Colors.white)))
                         :GestureDetector(
                         onTap: (){
                           _controller.nextPage(duration: Duration(milliseconds: 500),
                               curve: Curves.easeIn);
                         },
-                        child: Text("Next"))
-
+                        child: Text("Next", style: TextStyle(color: Colors.white)))
                   ],
                 )
             )

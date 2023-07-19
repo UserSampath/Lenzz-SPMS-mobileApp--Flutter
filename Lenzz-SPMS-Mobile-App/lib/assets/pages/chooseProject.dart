@@ -82,7 +82,7 @@ class _ListItemState extends State<ListItem> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor:Colors.indigo,
+      backgroundColor: Colors.blue[400],
       body: Column(
         children: [
           Row(
@@ -100,6 +100,11 @@ class _ListItemState extends State<ListItem> {
               ),
             ],
           ),
+          Image.asset(
+            'assets/hit.png',
+            height: 200,
+            width: 200,
+          ),
           Expanded(
             child: Center(
               child: Padding(
@@ -108,7 +113,7 @@ class _ListItemState extends State<ListItem> {
                   decoration: const BoxDecoration(
                     boxShadow: [
                       BoxShadow(
-                        color: Colors.blue,
+                        color: Colors.lightBlueAccent,
                         blurRadius: 10.0,
                       ),
                     ],
@@ -121,7 +126,7 @@ class _ListItemState extends State<ListItem> {
                       return Card(
                         shape: RoundedRectangleBorder(
                           borderRadius: BorderRadius.circular(15),
-                          side: const BorderSide(width: 2, color: Colors.black),
+                          side: const BorderSide(width: 2, color:Color(0xFF42A5F5),),
                         ),
                         child: ListTile(
                           onTap: () {

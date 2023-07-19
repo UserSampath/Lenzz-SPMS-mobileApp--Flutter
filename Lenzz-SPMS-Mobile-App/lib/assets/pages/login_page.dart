@@ -40,6 +40,7 @@ class _LoginState extends State<Login> {
       backgroundColor: const Color.fromARGB(255, 220, 237, 250),
       appBar: AppBar(
         title: const Text("Sign In"),
+        backgroundColor: Colors.blue[400],
         centerTitle: true,
         automaticallyImplyLeading: false,
       ),
@@ -196,7 +197,7 @@ class _LoginState extends State<Login> {
                   child: Container(
                     height: 50,
                     decoration: BoxDecoration(
-                      color: Colors.indigo,
+                      color: Colors.blue[400],
                       borderRadius: BorderRadius.circular(5),
                     ),
                     child: Center(

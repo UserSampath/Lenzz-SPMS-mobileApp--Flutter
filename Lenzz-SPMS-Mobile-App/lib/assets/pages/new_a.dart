@@ -2,7 +2,6 @@ import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:google_nav_bar/google_nav_bar.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-import '../navbar.dart';
 import 'chooseProject.dart';
 import 'login_page.dart';
 import 'package:http/http.dart' as http;
@@ -199,25 +198,15 @@ class _MyJobsState extends State<MyJobs> with
         backgroundColor: const Color.fromARGB(255, 220, 237, 250),
         appBar: AppBar(
             automaticallyImplyLeading: false,
-            // leading: Builder(
-            //   builder: (BuildContext context) {
-            //     return BackButton(
-            //         onPressed: () {
-            //           Navigator.of(context)
-            //               .push(MaterialPageRoute(builder: (context) => const ListItem()));
-            //         }
-            //     );
-            //   },
-            // ),
             title: Row(
               crossAxisAlignment: CrossAxisAlignment.center,
               children: [
                 Image.asset(
                   'assets/hasthiya.png',
-                  height: 70,
-                  width: 70,
+                  height: 80,
+                  width: 80,
                 ), 
-                Text("Hasthiya IT", style: TextStyle(fontSize: 15),)
+                Text("Hasthiya IT", style: TextStyle(fontSize: 20),)
               ],
             ),
             actions: [
@@ -245,7 +234,7 @@ class _MyJobsState extends State<MyJobs> with
                 ),
               ),
             ],
-            backgroundColor: Colors.indigo,
+            backgroundColor: Colors.blue[400],
             shape: RoundedRectangleBorder(
                 borderRadius: BorderRadius.only(bottomRight: Radius.circular(30), bottomLeft: Radius.circular(30))
             ),
@@ -258,7 +247,7 @@ class _MyJobsState extends State<MyJobs> with
                   Column(
                     children: <Widget>[
                       DropdownButton<String>(
-                        dropdownColor: Colors.indigo,
+                        dropdownColor: Colors.blue[400],
                         style: const TextStyle(
                           fontSize: 15.0,
                           fontWeight: FontWeight.bold,
@@ -404,10 +393,10 @@ class _MyJobsState extends State<MyJobs> with
         ),
 
         bottomNavigationBar: GNav(
-          gap: 8,
+          mainAxisAlignment: MainAxisAlignment.center,
           backgroundColor: Colors.black,
           color: Colors.white,
-          tabBackgroundColor: Colors.indigo,
+          tabBackgroundColor: Color(0xFF42A5F5),
           padding: EdgeInsets.all(16),
           tabs: [
             GButton(icon: Icons.arrow_back_rounded, text: 'Projects',
@@ -416,11 +405,7 @@ class _MyJobsState extends State<MyJobs> with
                   .push(MaterialPageRoute(builder: (context) => const ListItem()));
               },
             ),
-            GButton(icon: Icons.home, text: 'Home',),
-            GButton(icon: Icons.person, text: 'Profile',
-            ),
           ],
-
         ),
       ),
     );
