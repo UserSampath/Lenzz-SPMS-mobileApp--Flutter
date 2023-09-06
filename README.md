@@ -1,4 +1,4 @@
-# Kanban Board Mobile Application
+## Kanban Board Mobile Application
 
 Welcome to the Kanban Board mobile application, a Second-Year Software Project developed using Flutter. This project empowers teams to visualize and efficiently manage tasks using a Kanban Board approach.
 
